@@ -3,6 +3,7 @@ const port = 3000
 //init native packages
 const path = require('path')
 const express = require('express')
+const hbs = require('hbs')
 
 const app = express()
 
@@ -10,11 +11,17 @@ const app = express()
 const publicDirectoryPath = path.join(__dirname,'../public')
 
 //create views directory path for express
-const viewsPath = path.join(__dirname,'../templates')
+const viewsPath = path.join(__dirname,'../templates/views')
+
+//create partials path
+const partialsPath = path.join(__dirname,'../templates/partials')
 
 //set template engine default views
 app.set('view engine','hbs')
 app.set('views',viewsPath)
+
+//register partialPath
+hbs.registerPartials(partialsPath)
 
 //setup statuc directory to server
 app.use(express.static(publicDirectoryPath))

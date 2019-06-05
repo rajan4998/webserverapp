@@ -1,9 +1,11 @@
 const port = 3000
-const path = require('path')
 
+//init native packages
+const path = require('path')
 const express = require('express')
 
 const app = express()
+
 const publicDirectoryPath = path.join(__dirname,'../public')
 
 app.use(express.static(publicDirectoryPath))

@@ -6,11 +6,20 @@ const express = require('express')
 
 const app = express()
 
+//creating public directory path
 const publicDirectoryPath = path.join(__dirname,'../public')
 
+//create views directory path for express
+const viewsPath = path.join(__dirname,'../templates')
+
+//set template engine default views
 app.set('view engine','hbs')
+app.set('views',viewsPath)
+
+//setup statuc directory to server
 app.use(express.static(publicDirectoryPath))
 
+//routes star
 app.get('/help',(req,res)=>{
     res.render('help',{
         title : 'Help view',
@@ -43,9 +52,12 @@ app.get('/',(req,res)=>{
     })
 })
 
+//default route if not found
 app.get('/*',(req,res)=>{
     res.redirect('/')
 })
+
+//start server
 app.listen(port,()=>{
     console.log('Server Up at : '+port)
 })

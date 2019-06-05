@@ -10,7 +10,7 @@ const publicDirectoryPath = path.join(__dirname,'../public')
 
 app.use(express.static(publicDirectoryPath))
 
-app.get('/weather',(req,res)=>{
+app.get('/weather',(req, res)=>{
     let coordinates = {
         latitude: 28.995483,
         longitude: 77.704608,

@@ -59,6 +59,27 @@ app.get('/',(req,res)=>{
     })
 })
 
+app.get('/products',(req,res)=>{
+
+    let msg = "We find something for your search term"
+    let response = {};
+
+    if(!req.query.address){
+        return res.send({
+            error: "You must provide address",
+            response: response
+        })
+
+    }else{
+        return res.send({
+            forecast : "It'll rain today",
+            location : "New Delhi",
+            address : req.query.address
+        })
+    }
+
+})
+
 //default route if not found
 app.get('/*',(req,res)=>{
     res.render('404',{

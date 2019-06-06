@@ -61,7 +61,10 @@ app.get('/',(req,res)=>{
 
 //default route if not found
 app.get('/*',(req,res)=>{
-    res.redirect('/')
+    res.render('404',{
+        title : 'Error 404',
+        name : 'Rajan Joshi'
+    })
 })
 
 //start server

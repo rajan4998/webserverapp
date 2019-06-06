@@ -82,7 +82,7 @@ app.get('/products',(req,res)=>{
             forecast(response.longitude, response.latitude,response.location,(error,weatherforecast)=>{
                 return res.send({
                     forecast: weatherforecast,
-                    location: response.location
+                    location: response.location,
                 })
             })
         })

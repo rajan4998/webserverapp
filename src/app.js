@@ -1,9 +1,13 @@
 const port = 3000
 
-//init native packages
+//include native packages
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
+
+//include custom packages
+const geoCode = require('./utils/geocode')
+const forecast = require('./utils/weatherforecast')
 
 const app = express()
 
@@ -71,10 +75,16 @@ app.get('/products',(req,res)=>{
         })
 
     }else{
-        return res.send({
-            forecast : "It'll rain today",
-            location : "New Delhi",
-            address : req.query.address
+
+        geoCode(req.query.address,(error,response)=>{
+            console.log(error)
+            console.log(response)
+            forecast(response.longitude, response.latitude,response.location,(error,weatherforecast)=>{
+                return res.send({
+                    forecast: weatherforecast,
+                    location: response.location
+                })
+            })
         })
     }
 

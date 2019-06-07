@@ -5,6 +5,7 @@ const weatherForecast = (longitude, latitude,location, callback) => {
 
     const url = config.baseUrl + config.secretKey + '/' + longitude + ',' + latitude
 
+    console.log(url)
     request({ url: url, json: true }, (weatherError, {body}) => {
 
         if (weatherError) {
